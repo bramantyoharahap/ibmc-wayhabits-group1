@@ -88,7 +88,9 @@ def fn():
                 left join df_question as c on c.Id = b.Question
                 inner join df_domain as d on d.Id = c.Domain 
                 left join df_option as e on e.Id = b.Option
-                where b.Question = {row['id']}
+                where 1=1
+                and a.group = 1
+                and b.Question = {row['id']}
                 group by d.Name
                         """
             )
