@@ -47,7 +47,7 @@ def fn():
                     left join df_question as c on c.Id = b.Question
                     inner join df_domain as d on d.Id = c.Domain 
                     left join df_option as e on e.Id = b.Option
-                    where a.group = '1'
+                    where a.grp = '1'
                     and b.Question = {row['id']}
                 ),
                 T2 AS(
@@ -87,7 +87,7 @@ def fn():
                 left join df_question as c on c.Id = b.Question
                 inner join df_domain as d on d.Id = c.Domain 
                 left join df_option as e on e.Id = b.Option
-                where a.group = '1'
+                where a.grp = '1'
                 and b.Question = {row['id']}
                 group by d.Name
                         """
