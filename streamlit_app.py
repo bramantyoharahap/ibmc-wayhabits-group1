@@ -20,6 +20,7 @@ df_response_header = conn.read(
 df_response_detail = conn.read(
     spreadsheet=spreadsheet_response, worksheet="mondaydotcom_response_detail"
 )
+group = 1
 
 def fn():
     
@@ -47,7 +48,7 @@ def fn():
                     left join df_question as c on c.Id = b.Question
                     inner join df_domain as d on d.Id = c.Domain 
                     left join df_option as e on e.Id = b.Option
-                    where a.grp = '1'
+                    where a.grp = '{group}'
                     and b.Question = {row['id']}
                 ),
                 T2 AS(
@@ -87,7 +88,7 @@ def fn():
                 left join df_question as c on c.Id = b.Question
                 inner join df_domain as d on d.Id = c.Domain 
                 left join df_option as e on e.Id = b.Option
-                where a.grp = '1'
+                where a.grp = '{group}'
                 and b.Question = {row['id']}
                 group by d.Name
                         """
