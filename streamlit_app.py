@@ -24,6 +24,9 @@ group = 1
 
 def fn():
     
+    respondercount = sqldf("select count(*) as responderCount from df_response_header")
+    respondercount = respondercount['responderCount'].loc[0]
+    
     for id_domain in range(1,30) :
     
         q = sqldf(f"select cast(id as int) as id from df_question where domain={id_domain}")
@@ -109,10 +112,9 @@ def fn():
                 color_discrete_map="identity",
                 text_auto=False,
             )
-            
-            respondercount = sqldf(f"select count(*) as responderCount from df_response_header where grp = '{group}'")
+            st.text(f"""Total Responder {respondercount}""")
 
-            fig.update_yaxes(range=[0, respondercount], dtick=1)
+            fig.update_yaxes(range=[0, respondercount], dtick=2)
             st.plotly_chart(fig)
             # print(_df)
             # st.bar_chart(_df, x="Rank", y="ResponderCount", color="Color", stack=True)`
