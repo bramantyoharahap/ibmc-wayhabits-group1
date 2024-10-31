@@ -27,6 +27,11 @@ def fn():
     respondercount = sqldf("select count(*) as responderCount from df_response_header")
     respondercount = respondercount['responderCount'].loc[0]
     
+    st.header("IBM Consulting - Way Habits - Pertamedika")
+    st.text("Date: 30 Oct 2024")
+    st.text(f"""Total Responder: {respondercount}""")
+    
+    
     for id_domain in range(1,30) :
     
         q = sqldf(f"select cast(id as int) as id from df_question where domain={id_domain}")
@@ -97,7 +102,7 @@ def fn():
                         """
             )
 
-            st.title(
+            st.header(
                 f"""
                     Domain - {df_temp.loc[0,'Name']}\n
                     Question: {int(df_temp.loc[0,'QId'])} - {df_temp.loc[0,'Question']}
@@ -112,7 +117,7 @@ def fn():
                 color_discrete_map="identity",
                 text_auto=False,
             )
-            st.text(f"""Total Responder {respondercount}""")
+            # st.text(f"""Total Responder {respondercount}""")
 
             fig.update_yaxes(range=[0, respondercount], dtick=2)
             st.plotly_chart(fig)
